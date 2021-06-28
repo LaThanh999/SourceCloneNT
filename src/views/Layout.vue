@@ -7,8 +7,8 @@
       ></v-avatar>
 
       <v-tabs centered class="ml-n9" color="blue darken-1">
-        <v-tab v-for="link in links" :key="link">
-          {{ link }}
+        <v-tab v-for="item in items" :key="item" :to="item.path">
+          {{ item.text }}
         </v-tab>
       </v-tabs>
     </v-app-bar>
@@ -27,9 +27,17 @@
 
 <script>
 export default {
-  name: "Layout.vue",
   data: () => ({
-    links: ["Giỏ hàng của bạn", "Thông tin nhận hàng", "Hoàn tất đặt hàng"],
+    items: [
+      {
+        text: "Giỏ hàng của bạn",
+        path: "/cart",
+      },
+      {
+        text: "Thông tin nhận hàng",
+        path: "/info",
+      },
+    ],
   }),
 };
 </script>

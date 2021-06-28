@@ -12,9 +12,7 @@
 </template>
 
 <script>
-export default {
-  name: "Cart",
-};
+export default {};
 </script>
 
 <style scoped></style>
