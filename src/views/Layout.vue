@@ -17,18 +17,7 @@
       <v-container>
         <v-row>
           <v-col cols="12" sm="10" offset="1">
-            <v-sheet
-              min-height="5vh"
-              class="mb-2 d-flex align-center"
-              rounded="lg"
-            >
-              <di class="ml-4">Giỏ hàng của bạn</di>
-            </v-sheet>
-            <v-sheet min-height="80vh" rounded="lg" class="pa-4">
-              <router-view />
-            </v-sheet>
-            <div class="my-2"></div>
-            <core-group-button></core-group-button>
+            <router-view />
           </v-col>
         </v-row>
       </v-container>
