@@ -1,5 +1,8 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
+import CONSTANTS from "../constants";
+
+const { ROUTERS } = CONSTANTS;
 
 Vue.use(VueRouter);
 
@@ -9,7 +12,7 @@ const routes = [
     component: () => import("@/views/Layout"),
     children: [
       {
-        path: "/",
+        path: ROUTERS.HOME,
         name: "Home",
         component: () => import("@/views/Cart"),
       },

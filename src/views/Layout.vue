@@ -24,9 +24,11 @@
             >
               <di class="ml-4">Giỏ hàng của bạn</di>
             </v-sheet>
-            <v-sheet min-height="70vh" rounded="lg" class="pa-4">
+            <v-sheet min-height="80vh" rounded="lg" class="pa-4">
               <router-view />
             </v-sheet>
+            <div class="my-2"></div>
+            <core-group-button></core-group-button>
           </v-col>
         </v-row>
       </v-container>
