@@ -9,7 +9,11 @@
     </v-app-bar>
     <v-main class="grey lighten-3">
       <v-container>
-        <router-view />
+        <v-row>
+          <v-col cols="12" md="8" offset-md="2">
+            <router-view />
+          </v-col>
+        </v-row>
       </v-container>
     </v-main>
   </div>
