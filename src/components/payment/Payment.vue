@@ -138,11 +138,9 @@ export default {
 .v-application--is-ltr .v-expansion-panel-header {
   max-width: 250px;
 }
-.expansion-panel {
-  border: 1px solid #3333;
-}
 .v-expansion-panel-content {
   overflow: auto;
   max-height: 300px;
+  border: 1px solid #3333;
 }
 </style>
