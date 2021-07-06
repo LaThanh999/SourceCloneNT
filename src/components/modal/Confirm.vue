@@ -15,7 +15,7 @@
             max-width="140"
             @click="closeDialog"
           >
-            Xác nhận
+            Đóng
           </v-btn>
           <v-btn
             class="ma-2"
@@ -25,7 +25,7 @@
             max-width="140"
             @click="saveDialog"
           >
-            Đóng
+            Xác nhận
           </v-btn>
           <v-spacer></v-spacer>
         </v-card-actions>
