@@ -26,7 +26,17 @@ const routes = [
         name: PAGE_NAMES[ROUTERS.INFO],
         component: () => import("@/views/Info"),
       },
+      {
+        path: ROUTERS.PAYMENT,
+        name: PAGE_NAMES[ROUTERS.PAYMENT],
+        component: () => import("@/views/Payment"),
+      },
     ],
+  },
+  {
+    path: "*",
+    name: PAGE_NAMES[ROUTERS.CART],
+    component: () => import("@/views/Cart"),
   },
 ];
 

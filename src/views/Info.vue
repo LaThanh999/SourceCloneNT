@@ -15,7 +15,7 @@
     <v-sheet min-height="35vh" rounded="lg" class="pa-4">
       <v-toolbar-title>1. Thông tin nhận hàng</v-toolbar-title>
       <v-row class="mt-4">
-        <v-col cols="6" offset="3">
+        <v-col cols="12" md="6" offset-md="3">
           <v-form ref="form" v-model="valid" lazy-validation>
             <v-text-field
               label="Số điện thoại *"
@@ -39,13 +39,13 @@
     <v-sheet min-height="35vh" rounded="lg" class="pa-4">
       <v-toolbar-title>2. Nhận tại nhà thuốc</v-toolbar-title>
       <v-row class="mt-4">
-        <v-col cols="6" offset="3">
+        <v-col cols="12" md="6" offset-md="3">
           <v-form ref="form" v-model="valid" lazy-validation>
             <v-row>
-              <v-col cols="6">
+              <v-col cols="12" md="6">
                 <v-autocomplete outlined label="Tỉnh"></v-autocomplete>
               </v-col>
-              <v-col cols="6">
+              <v-col cols="12" md="6">
                 <v-autocomplete outlined label="Quận/ huyện"></v-autocomplete>
               </v-col>
               <v-col cols="12">
@@ -56,7 +56,7 @@
           <span>Chọn thời gian nhận hàng</span>
           <v-form ref="form" v-model="valid" class="mt-2" lazy-validation>
             <v-row>
-              <v-col cols="6">
+              <v-col cols="12" md="6">
                 <v-menu
                   v-model="isMenuDate"
                   :close-on-content-click="false"
@@ -78,7 +78,7 @@
                   <v-date-picker @input="isMenuDate = false"></v-date-picker>
                 </v-menu>
               </v-col>
-              <v-col cols="6">
+              <v-col cols="12" md="6">
                 <v-menu
                   ref="menu"
                   v-model="isMenuTime"
@@ -114,14 +114,14 @@
     <div class="my-2"></div>
     <v-sheet min-height="35vh" rounded="lg" class="pa-4">
       <v-row>
-        <v-col cols="6" offset="3">
+        <v-col cols="12" md="6" offset-md="3">
           <v-checkbox label="Xuất hóa đơn cho công ty"></v-checkbox>
           <v-textarea outlined label="Ghi chú thêm nếu có"></v-textarea>
         </v-col>
       </v-row>
     </v-sheet>
     <div class="my-2"></div>
-    <core-group-button></core-group-button>
+    <core-group-button :clickActionNext="clickActionNext"></core-group-button>
   </div>
 </template>
 
@@ -133,6 +133,11 @@ export default {
     isMenuTime: false,
     time: null,
   }),
+  methods: {
+    clickActionNext() {
+      this.$router.push({ path: "/payment" });
+    },
+  },
 };
 </script>
 

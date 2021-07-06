@@ -1,28 +1,18 @@
 <template>
-  <v-app id="inspire">
+  <div>
     <v-app-bar app color="primary" flat>
-      <v-avatar
-        :color="$vuetify.breakpoint.smAndDown ? 'grey darken-1' : 'transparent'"
-        size="32"
-      ></v-avatar>
-
       <v-tabs centered class="ml-n9" color="blue darken-1">
-        <v-tab v-for="item in items" :key="item" :to="item.path">
+        <v-tab v-for="(item, index) in items" :key="index" :to="item.path">
           {{ item.text }}
         </v-tab>
       </v-tabs>
     </v-app-bar>
-
     <v-main class="grey lighten-3">
       <v-container>
-        <v-row>
-          <v-col cols="12" sm="10" offset="1">
-            <router-view />
-          </v-col>
-        </v-row>
+        <router-view />
       </v-container>
     </v-main>
-  </v-app>
+  </div>
 </template>
 
 <script>
