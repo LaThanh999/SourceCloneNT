@@ -25,7 +25,16 @@
 </template>
 
 <script>
-export default {};
+export default {
+  data: () => ({
+    valid: true,
+    customer: {
+      phoneNumber: "",
+      gender: "",
+      name: "",
+    },
+  }),
+};
 </script>
 
 <style scoped></style>

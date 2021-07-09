@@ -21,7 +21,6 @@
           <v-row>
             <v-col cols="12" md="6">
               <v-menu
-                v-model="isMenuDate"
                 :close-on-content-click="false"
                 :nudge-right="40"
                 transition="scale-transition"
@@ -44,7 +43,6 @@
             <v-col cols="12" md="6">
               <v-menu
                 ref="menu"
-                v-model="isMenuTime"
                 :close-on-content-click="false"
                 :nudge-right="40"
                 transition="scale-transition"
@@ -63,7 +61,6 @@
                   ></v-text-field>
                 </template>
                 <v-time-picker
-                  v-if="isMenuTime"
                   full-width
                   @click:minute="$refs.menu.save(time)"
                 ></v-time-picker>
@@ -77,7 +74,11 @@
 </template>
 
 <script>
-export default {};
+export default {
+  data: () => ({
+    valid: true,
+  }),
+};
 </script>
 
 <style scoped></style>
