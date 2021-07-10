@@ -7,6 +7,7 @@
           <v-text-field
             label="Số điện thoại *"
             outlined
+            dense
             color="primary"
           ></v-text-field>
           <v-radio-group row>
@@ -16,6 +17,7 @@
           <v-text-field
             label="Họ và tên *"
             outlined
+            dense
             color="primary"
           ></v-text-field>
         </v-form>
@@ -37,4 +39,8 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped lang="scss">
+$text-field-line-height: 100px;
+$text-field-padding: 4px 0 4px;
+$text-field-outlined-margin-bottom: 36px !default;
+</style>

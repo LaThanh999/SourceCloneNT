@@ -1,0 +1,34 @@
+$body-font-family: 'Work Sans', serif;
+$border-radius-root: 6px;
+$font-size-root: 14px;
+
+// Variables must come before the import
+$btn-letter-spacing: 0;
+$btn-font-weight: 400;
+$list-item-title-font-size: 0.929rem;
+$list-item-dense-title-font-size: 0.929rem;
+$list-item-dense-title-font-weight: initial;
+$fab-icon-sizes: (
+        'small': 20
+);
+$btn-sizes: (
+        'default': 41,
+        'large': 54
+);
+
+$headings: (
+        'h1': (
+                'size': 10.3125rem,
+                'line-height': 1.15em
+        ),
+        'h2': (
+                'size': 2.25rem,
+                'line-height': 1.5em
+        )
+);
+
+$text-field-line-height:100px ;
+$text-field-padding: 4px 0 4px ;
+$text-field-outlined-margin-bottom: 36px !default;
+$text-field-border-radius:30px !default;
+$text-field-counter-margin:4px !default;

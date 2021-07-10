@@ -7,6 +7,7 @@ import "./components";
 import "./utils/lodash";
 import Toast from "vue-toastification";
 import "vue-toastification/dist/index.css";
+import "./styles/index.scss";
 
 Vue.config.productionTip = false;
 Vue.use(Toast, {});

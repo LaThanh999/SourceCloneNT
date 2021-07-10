@@ -6,13 +6,17 @@
         <v-form ref="form" v-model="valid" lazy-validation>
           <v-row>
             <v-col cols="12" md="6">
-              <v-autocomplete outlined label="Tỉnh"></v-autocomplete>
+              <v-autocomplete outlined dense label="Tỉnh"></v-autocomplete>
             </v-col>
             <v-col cols="12" md="6">
-              <v-autocomplete outlined label="Quận/ huyện"></v-autocomplete>
+              <v-autocomplete
+                outlined
+                dense
+                label="Quận/ huyện"
+              ></v-autocomplete>
             </v-col>
             <v-col cols="12">
-              <v-autocomplete outlined label="Phường xã"></v-autocomplete>
+              <v-autocomplete outlined dense label="Phường xã"></v-autocomplete>
             </v-col>
           </v-row>
         </v-form>
@@ -33,6 +37,7 @@
                     label="Chọn ngày nhận hàng"
                     prepend-inner-icon="mdi-calendar"
                     readonly
+                    dense
                     v-bind="attrs"
                     v-on="on"
                   ></v-text-field>
@@ -56,6 +61,7 @@
                     prepend-inner-icon="mdi-clock-time-four-outline"
                     readonly
                     v-bind="attrs"
+                    dense
                     v-on="on"
                     outlined
                   ></v-text-field>
