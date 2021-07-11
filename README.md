@@ -90,8 +90,9 @@ See [Netlify](https://www.netlify.com/blog/2016/09/29/a-step-by-step-guide-deplo
     |   ├── router                                  # Bộ định tuyến của vue
     |   |   └── index.js                            # Khai báo config các đường dẫn
     |   ├── store                                   # Chứa những thứ liên quan vuex như store, module
-    |   ├── style                                   # Chứa các file liên quan tracking google analytics (ga) hay google tag manager (gtm)
-    |   |   └── index.css                           # Chứa các file SCSS, CSS dùng chung
+    |   ├── style                                   # Chứa các file liên quan tracking google analytics (ga) hay google tag manager 
+    |   |   └── index.scss                          # Chứa các file SCSS, CSS dùng chung
+    |   |   └── variables.scss                      # Config lại các định dạng CSS dùng chung, cài nay auto
     |   ├── utlis                                   # Chứa các file plugin sử dụng
     |   |   ├── axios.js                            # Dùng đẻ xử lý với api
     |   |   ├── color.js                            # Config lại màu mặc định
