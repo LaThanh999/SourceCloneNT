@@ -8,9 +8,11 @@ import "./utils/lodash";
 import Toast from "vue-toastification";
 import "vue-toastification/dist/index.css";
 import "./styles/index.scss";
+import MockService from "@/mock/mock.service";
 
 Vue.config.productionTip = false;
 Vue.use(Toast, {});
+MockService.init();
 
 new Vue({
   router,
