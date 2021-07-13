@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapActions, mapState } from "vuex";
 
 export default {
   data: () => ({
@@ -23,6 +23,7 @@ export default {
   }),
 
   methods: {
+    ...mapActions("products", ["getAllProducts"]),
     closeDialog() {
       this.dialogConfirm = false;
     },
@@ -34,6 +35,9 @@ export default {
 
   mounted() {
     console.log(this.products);
+    this.getAllProducts().then((res) => {
+      console.log(res);
+    });
   },
 
   computed: {
