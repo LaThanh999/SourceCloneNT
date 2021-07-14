@@ -5,22 +5,33 @@
       <span class="ml-4 text-notify">Đặt hàng thành công</span>
     </div>
     <ul class="mt-4 ul-circle">
-      <li>Người nhận: Anh Nghiêng, <strong>0929143566</strong></li>
-      <li class="mt-2">
-        Nhận hàng tại nhà thuốc:
-        <strong>Phường Hiệp Bình Chánh, Quận Thủ Đức, TP. HCM</strong>
+      <li>
+        Người nhận: <strong>{{ info ? info.name : "" }}</strong>
+      </li>
+      <li>
+        Số điện thoại: <strong>{{ info ? info.phoneNumber : "" }}</strong>
       </li>
       <li class="mt-2">
-        Thời gian: <strong>08h - 12h - Ngày mai</strong>(16/11)
+        Nhận hàng tại nhà thuốc:
+        <strong v-if="info">{{ addressTake }}</strong>
+      </li>
+      <li class="mt-2">
+        Thời gian:
+        <strong v-if="info">{{ info.hourTake }} - {{ info.dateTake }}</strong>
       </li>
       <li>
         <v-expansion-panels flat>
           <v-expansion-panel>
             <v-expansion-panel-header style="padding: 0px !important"
-              >Xem 7 sản phẩm đã đặt</v-expansion-panel-header
+              >Xem {{ products.length }} sản phẩm đã
+              đặt</v-expansion-panel-header
             >
             <v-expansion-panel-content class="mb-2">
-              <div class="d-flex flex-column align-center justify-center">
+              <div
+                v-for="(item, index) in products"
+                :key="index"
+                class="d-flex flex-column align-center justify-center"
+              >
                 <v-list-item three-line>
                   <v-list-item-avatar
                     tile
@@ -28,87 +39,15 @@
                     color="grey"
                   ></v-list-item-avatar>
                   <v-list-item-content>
-                    <div class="text-overline">Loại thuốc 1</div>
-                    <v-list-item-subtitle
-                      >Chi tiết loại thuốc 1</v-list-item-subtitle
-                    >
+                    <div class="text-overline">{{ item.name }}</div>
+                    <v-list-item-subtitle>{{
+                      item.detail
+                    }}</v-list-item-subtitle>
                   </v-list-item-content>
                   <div class="mx-12"></div>
 
                   <div class="text-right">
-                    <div class="span_money">1.554.000đ</div>
-                  </div>
-                </v-list-item>
-                <v-list-item three-line>
-                  <v-list-item-avatar
-                    tile
-                    size="60"
-                    color="grey"
-                  ></v-list-item-avatar>
-                  <v-list-item-content>
-                    <div class="text-overline">Loại thuốc 1</div>
-                    <v-list-item-subtitle
-                      >Chi tiết loại thuốc 1</v-list-item-subtitle
-                    >
-                  </v-list-item-content>
-                  <div class="mx-12"></div>
-
-                  <div class="text-right">
-                    <div class="span_money">1.554.000đ</div>
-                  </div>
-                </v-list-item>
-                <v-list-item three-line>
-                  <v-list-item-avatar
-                    tile
-                    size="60"
-                    color="grey"
-                  ></v-list-item-avatar>
-                  <v-list-item-content>
-                    <div class="text-overline">Loại thuốc 1</div>
-                    <v-list-item-subtitle
-                      >Chi tiết loại thuốc 1</v-list-item-subtitle
-                    >
-                  </v-list-item-content>
-                  <div class="mx-12"></div>
-
-                  <div class="text-right">
-                    <div class="span_money">1.554.000đ</div>
-                  </div>
-                </v-list-item>
-                <v-list-item three-line>
-                  <v-list-item-avatar
-                    tile
-                    size="60"
-                    color="grey"
-                  ></v-list-item-avatar>
-                  <v-list-item-content>
-                    <div class="text-overline">Loại thuốc 1</div>
-                    <v-list-item-subtitle
-                      >Chi tiết loại thuốc 1</v-list-item-subtitle
-                    >
-                  </v-list-item-content>
-                  <div class="mx-12"></div>
-
-                  <div class="text-right">
-                    <div class="span_money">1.554.000đ</div>
-                  </div>
-                </v-list-item>
-                <v-list-item three-line>
-                  <v-list-item-avatar
-                    tile
-                    size="60"
-                    color="grey"
-                  ></v-list-item-avatar>
-                  <v-list-item-content>
-                    <div class="text-overline">Loại thuốc 1</div>
-                    <v-list-item-subtitle
-                      >Chi tiết loại thuốc 1</v-list-item-subtitle
-                    >
-                  </v-list-item-content>
-                  <div class="mx-12"></div>
-
-                  <div class="text-right">
-                    <div class="span_money">1.554.000đ</div>
+                    <div class="span_money">{{ item.price }}</div>
                   </div>
                 </v-list-item>
               </div>
@@ -116,15 +55,39 @@
           </v-expansion-panel>
         </v-expansion-panels>
       </li>
-      <li>Tổng tiền: <strong>120.000đ</strong></li>
+      <li>
+        Tổng tiền: <strong>{{ totalPrice }} Đồng</strong>
+      </li>
       <li class="mt-2">Thanh toán <strong>tiền mặt </strong>khi nhận hàng</li>
     </ul>
   </div>
 </template>
 
 <script>
+import { mapActions, mapState } from "vuex";
+
 export default {
-  data: () => ({}),
+  data: () => ({
+    info: {},
+  }),
+  mounted() {
+    this.getAllProducts();
+    this.getInfo().then((res) => {
+      this.info = res;
+    });
+  },
+  computed: {
+    ...mapState("products", ["products"]),
+    addressTake() {
+      return `${this.info.provincial} - ${this.info.district} - ${this.info.address}`;
+    },
+    totalPrice() {
+      return this._.sum(this.products.map((x) => x.price));
+    },
+  },
+  methods: {
+    ...mapActions("products", ["getAllProducts", "getInfo"]),
+  },
 };
 </script>
 

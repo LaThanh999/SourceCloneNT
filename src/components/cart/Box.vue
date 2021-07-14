@@ -58,23 +58,33 @@
           </div>
         </div>
       </div>
+      <modal-confirm
+        :dialog="dialogConfirm"
+        :closeDialog="closeDialog"
+        :saveDialog="saveDialog"
+      ></modal-confirm>
     </v-list-item>
   </div>
 </template>
 
 <script>
+import { mapActions } from "vuex";
+
 export default {
   data: () => ({
     dialogConfirm: false,
     count: 1,
   }),
   methods: {
+    ...mapActions("products", ["removeProducts"]),
     closeDialog() {
       this.dialogConfirm = false;
     },
     saveDialog() {
       this.dialogConfirm = false;
-      this.$toast.success("Xóa sản phẩm thành công");
+      this.removeProducts(this.product.id).then(() => {
+        this.$toast.success("Xóa sản phẩm thành công");
+      });
     },
   },
   props: {

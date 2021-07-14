@@ -1,21 +1,16 @@
 <template>
   <div>
     <v-card color outlined>
-      <div v-for="(item, index) in products" :key="index">
+      <div v-for="(item, index) in getProducts" :key="index">
         <cart-box :product="item"></cart-box>
         <v-divider></v-divider>
       </div>
     </v-card>
-    <modal-confirm
-      :dialog="dialogConfirm"
-      :closeDialog="closeDialog"
-      :saveDialog="saveDialog"
-    ></modal-confirm>
   </div>
 </template>
 
 <script>
-import { mapActions, mapState } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 
 export default {
   data: () => ({
@@ -24,24 +19,14 @@ export default {
 
   methods: {
     ...mapActions("products", ["getAllProducts"]),
-    closeDialog() {
-      this.dialogConfirm = false;
-    },
-    saveDialog() {
-      this.dialogConfirm = false;
-      this.$toast.success("Xóa sản phẩm thành công");
-    },
   },
 
-  mounted() {
-    console.log(this.products);
-    this.getAllProducts().then((res) => {
-      console.log(res);
-    });
+  async mounted() {
+    await this.getAllProducts();
   },
 
   computed: {
-    ...mapState("products", ["products"]),
+    ...mapGetters("products", ["getProducts"]),
   },
 };
 </script>

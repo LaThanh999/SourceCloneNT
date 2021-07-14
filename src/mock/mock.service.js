@@ -1,7 +1,7 @@
-var axios = require("axios");
+const axios = require("axios");
 
-var MockAdapter = require("axios-mock-adapter");
-import products from "./produtcs.json";
+const MockAdapter = require("axios-mock-adapter");
+import dataProducts from "./produtcs.json";
 
 // mock testing user accounts
 const users = [
@@ -19,8 +19,10 @@ const users = [
 
 const MockService = {
   init() {
+    let products = dataProducts;
+    let info;
     // this sets the mock adapter on the default instance
-    var mock = new MockAdapter(axios);
+    const mock = new MockAdapter(axios);
 
     // mock login request
     mock.onPost("/login").reply((data) => {
@@ -49,8 +51,23 @@ const MockService = {
       return [401, { errors: ["Invalid authentication"] }];
     });
 
-    mock.onGet("/getProducts").reply(() => {
+    mock.onGet("/getProducts", {}).reply(() => {
       return [200, products];
+    });
+
+    mock.onGet(/\/getProducts\/\d+/).reply(function (config) {
+      const id = config.url.split("/")[config.url.split("/").length - 1];
+      products = [...products.filter((el) => el.id !== +id)];
+      return [200, products];
+    });
+
+    mock.onPost("/setInfo").reply((req) => {
+      info = req.data;
+      return [200, info];
+    });
+
+    mock.onGet("/getInfo", {}).reply(() => {
+      return [200, info];
     });
   },
 };
