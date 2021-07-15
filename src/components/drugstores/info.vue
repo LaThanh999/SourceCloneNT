@@ -37,78 +37,26 @@
         <span>Chọn thời gian nhận hàng</span>
         <v-row class="mt-4">
           <v-col cols="12" md="6">
-            <v-menu
-              ref="menu"
-              v-model="menu"
-              :close-on-content-click="false"
-              :return-value.sync="info.dateTake"
-              transition="scale-transition"
-              offset-y
-              min-width="auto"
-            >
-              <template v-slot:activator="{ on, attrs }">
-                <v-text-field
-                  :rules="[(v) => !!v || 'Ngày nhận hàng không được để trống']"
-                  v-model="info.dateTake"
-                  label="Chọn ngày nhận hàng"
-                  prepend-inner-icon="mdi-calendar"
-                  readonly
-                  v-bind="attrs"
-                  v-on="on"
-                  dense
-                  outlined
-                ></v-text-field>
-              </template>
-              <v-date-picker v-model="info.dateTake" no-title scrollable>
-                <v-spacer></v-spacer>
-                <v-btn text color="primary" @click="menu = false">
-                  Cancel
-                </v-btn>
-                <v-btn
-                  text
-                  color="primary"
-                  @click="$refs.menu.save(info.dateTake)"
-                >
-                  OK
-                </v-btn>
-              </v-date-picker>
-            </v-menu>
+            <v-autocomplete
+              outlined
+              dense
+              prepend-inner-icon="mdi-calendar"
+              :rules="[(v) => !!v || 'Ngày nhận hàng không được để trống']"
+              :items="listDateTake"
+              v-model="info.dateTake"
+              label="Ngày nhận hàng "
+            ></v-autocomplete>
           </v-col>
           <v-col cols="12" md="6">
-            <v-dialog
-              ref="dialog"
-              v-model="modal2"
-              :return-value.sync="info.hourTake"
-              persistent
-              width="290px"
-            >
-              <template v-slot:activator="{ on, attrs }">
-                <v-text-field
-                  label="Chọn giờ nhận hàng"
-                  :rules="[(v) => !!v || 'Giờ nhận hàng không được để trống']"
-                  v-model="info.hourTake"
-                  prepend-inner-icon="mdi-clock-time-four-outline"
-                  readonly
-                  v-bind="attrs"
-                  v-on="on"
-                  dense
-                  outlined
-                ></v-text-field>
-              </template>
-              <v-time-picker v-if="modal2" v-model="info.hourTake" full-width>
-                <v-spacer></v-spacer>
-                <v-btn text color="primary" @click="modal2 = false">
-                  Cancel
-                </v-btn>
-                <v-btn
-                  text
-                  color="primary"
-                  @click="$refs.dialog.save(info.hourTake)"
-                >
-                  OK
-                </v-btn>
-              </v-time-picker>
-            </v-dialog>
+            <v-autocomplete
+              outlined
+              dense
+              prepend-inner-icon="mdi-clock-time-four-outline"
+              :rules="[(v) => !!v || 'Thời gian nhận hàng không được để trống']"
+              :items="listHourTake"
+              v-model="info.hourTake"
+              label="Thời gian nhận hàng"
+            ></v-autocomplete>
           </v-col>
         </v-row>
       </v-col>
@@ -119,8 +67,6 @@
 <script>
 export default {
   data: () => ({
-    menu: false,
-    modal2: false,
     listProvincial: [
       {
         text: "Hồ Chí Minh",
@@ -139,6 +85,34 @@ export default {
       {
         text: "Quận 2",
         value: "Quận 2",
+      },
+    ],
+    listDateTake: [
+      {
+        text: "16-07 ( Ngày mai)",
+        value: "16-07 ( Ngày mai)",
+      },
+      {
+        text: "17-07",
+        value: "17-07",
+      },
+      {
+        text: "18-07",
+        value: "18-07",
+      },
+    ],
+    listHourTake: [
+      {
+        text: "Trước 12g",
+        value: "Trước 12g",
+      },
+      {
+        text: "Trước 18g",
+        value: "Trước 18g",
+      },
+      {
+        text: "Sau 18g",
+        value: "Sau 18g",
       },
     ],
   }),
